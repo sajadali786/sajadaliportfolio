@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sajad Ali | Electrical Engineer (Power)</title>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- FontAwesome & Three.js -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -15,7 +16,7 @@
     <!-- Custom Fonts -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
-        
+
         :root {
             --copper: #b87333;
             --copper-glow: #ffae42;
@@ -31,7 +32,10 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, .machine-font {
+        h1,
+        h2,
+        h3,
+        .machine-font {
             font-family: 'Orbitron', sans-serif;
         }
 
@@ -50,12 +54,13 @@
         .nameplate {
             background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
             border: 2px solid #444;
-            box-shadow: 
-                inset 2px 2px 5px rgba(0,0,0,0.9),
-                inset -2px -2px 5px rgba(255,255,255,0.1),
-                0 10px 20px rgba(0,0,0,0.5);
+            box-shadow:
+                inset 2px 2px 5px rgba(0, 0, 0, 0.9),
+                inset -2px -2px 5px rgba(255, 255, 255, 0.1),
+                0 10px 20px rgba(0, 0, 0, 0.5);
             position: relative;
         }
+
         .screw {
             width: 12px;
             height: 12px;
@@ -64,6 +69,7 @@
             position: absolute;
             box-shadow: 1px 1px 2px black;
         }
+
         .screw::after {
             content: '';
             position: absolute;
@@ -74,16 +80,33 @@
             background: #111;
             transform: translate(-50%, -50%) rotate(45deg);
         }
-        .screw.tl { top: 10px; left: 10px; }
-        .screw.tr { top: 10px; right: 10px; }
-        .screw.bl { bottom: 10px; left: 10px; }
-        .screw.br { bottom: 10px; right: 10px; }
+
+        .screw.tl {
+            top: 10px;
+            left: 10px;
+        }
+
+        .screw.tr {
+            top: 10px;
+            right: 10px;
+        }
+
+        .screw.bl {
+            bottom: 10px;
+            left: 10px;
+        }
+
+        .screw.br {
+            bottom: 10px;
+            right: 10px;
+        }
 
         /* Copper Text Effect */
         .text-copper {
             color: var(--copper);
             text-shadow: 0 0 10px rgba(184, 115, 51, 0.4);
         }
+
         .text-electric {
             color: var(--electric-blue);
             text-shadow: 0 0 8px rgba(0, 243, 255, 0.6);
@@ -97,6 +120,7 @@
             backdrop-filter: blur(5px);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+
         .machine-card:hover {
             transform: translateY(-5px) scale(1.01);
             border-left-color: var(--electric-blue);
@@ -112,31 +136,52 @@
             border: 1px solid #333;
             position: relative;
         }
+
         /* Ticks on the meter */
         .meter-container::after {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background: repeating-linear-gradient(90deg, transparent 0, transparent 19%, #000 20%);
             z-index: 2;
         }
+
         .meter-fill {
             height: 100%;
             background: linear-gradient(90deg, var(--copper), var(--electric-blue));
             width: 0%;
             animation: loadMeter 2s ease-out forwards;
         }
+
         @keyframes loadMeter {
-            to { width: var(--target-width); }
+            to {
+                width: var(--target-width);
+            }
         }
 
         /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: #333; border: 1px solid #000; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--copper); }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border: 1px solid #000;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--copper);
+        }
     </style>
 </head>
+
 <body>
 
     <!-- 3D Background Container -->
@@ -146,11 +191,12 @@
     <nav class="fixed w-full z-50 bg-black/80 border-b border-white/10 backdrop-blur-md">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold machine-font tracking-wider text-white flex items-center gap-2">
-                <i class="fas fa-bolt text-copper animate-pulse"></i> 
+                <i class="fas fa-bolt text-copper animate-pulse"></i>
                 SAJAD.<span class="text-electric">ALI</span>
             </a>
             <div class="hidden md:flex space-x-8 text-sm font-bold machine-font tracking-widest uppercase">
                 <a href="#expertise" class="hover:text-copper transition">Expertise</a>
+                <a href="#sustainability" class="hover:text-electric transition">Impact</a>
                 <a href="#projects" class="hover:text-electric transition">Projects</a>
                 <a href="#publications" class="hover:text-copper transition">Research</a>
                 <a href="#experience" class="hover:text-electric transition">Experience</a>
@@ -162,14 +208,16 @@
     <!-- Hero Section: Industrial Nameplate Style -->
     <section class="pt-32 pb-20 min-h-screen flex items-center relative">
         <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12 z-10">
-            
+
             <!-- Profile Info -->
             <div class="md:w-3/5 order-2 md:order-1">
                 <div class="nameplate p-8 md:p-10 rounded-sm mb-8 transform transition hover:scale-[1.005]">
                     <!-- Screws -->
-                    <div class="screw tl"></div><div class="screw tr"></div>
-                    <div class="screw bl"></div><div class="screw br"></div>
-                    
+                    <div class="screw tl"></div>
+                    <div class="screw tr"></div>
+                    <div class="screw bl"></div>
+                    <div class="screw br"></div>
+
                     <div class="flex justify-between items-start mb-4 border-b border-gray-700 pb-4">
                         <div>
                             <p class="text-xs text-gray-500 font-mono mb-1">SPEC SHEET: 001-SA</p>
@@ -178,7 +226,8 @@
                             </h1>
                         </div>
                         <div class="text-right hidden sm:block">
-                            <div class="border border-electric text-electric px-2 py-1 text-xs font-bold animate-pulse">STATUS: ONLINE</div>
+                            <div class="border border-electric text-electric px-2 py-1 text-xs font-bold animate-pulse">
+                                STATUS: ONLINE</div>
                             <div class="text-xs text-gray-400 mt-1">LOC: PAKISTAN</div>
                         </div>
                     </div>
@@ -188,14 +237,20 @@
                     </h2>
 
                     <p class="text-gray-400 text-lg leading-relaxed mb-6 font-light border-l-2 border-gray-600 pl-4">
-                        A passionate graduate in Electrical Engineering, currently pursuing a master's degree to deepen my expertise. Highly proficient in <strong>Ansys Maxwell</strong>, <strong>Circuit Design</strong>, and <strong>Data Analysis</strong> with a focus on <span class="text-white">Power Systems</span> and <span class="text-white">Renewable Energy</span>.
+                        A passionate graduate in Electrical Engineering, currently pursuing a master's degree to deepen
+                        my expertise. Highly proficient in <strong>Ansys Maxwell</strong>, <strong>Circuit
+                            Design</strong>, and <strong>Data Analysis</strong> with a focus on <span
+                            class="text-white">Power Systems</span> and <span class="text-white">Renewable
+                            Energy</span>.
                     </p>
 
                     <div class="flex flex-wrap gap-4">
-                        <a href="#contact" class="bg-copper hover:bg-white hover:text-black text-black font-bold py-3 px-8 uppercase machine-font tracking-wider transition skew-x-[-10deg]">
+                        <a href="#contact"
+                            class="bg-copper hover:bg-white hover:text-black text-black font-bold py-3 px-8 uppercase machine-font tracking-wider transition skew-x-[-10deg]">
                             <div class="skew-x-[10deg]">Get In Touch</div>
                         </a>
-                        <a href="resume.pdf" target="_blank" class="border border-gray-500 hover:border-electric hover:text-electric text-gray-300 font-bold py-3 px-8 uppercase machine-font tracking-wider transition skew-x-[-10deg]">
+                        <a href="resume.pdf" target="_blank"
+                            class="border border-gray-500 hover:border-electric hover:text-electric text-gray-300 font-bold py-3 px-8 uppercase machine-font tracking-wider transition skew-x-[-10deg]">
                             <div class="skew-x-[10deg]"><i class="fas fa-download mr-2"></i> Resume</div>
                         </a>
                     </div>
@@ -206,14 +261,18 @@
             <div class="md:w-2/5 order-1 md:order-2 flex justify-center relative">
                 <div class="relative w-64 h-64 md:w-80 md:h-80">
                     <!-- Rotating Gauge Ring -->
-                    <svg class="absolute inset-0 w-full h-full animate-[spin_10s_linear_infinite]" viewBox="0 0 100 100">
+                    <svg class="absolute inset-0 w-full h-full animate-[spin_10s_linear_infinite]"
+                        viewBox="0 0 100 100">
                         <circle cx="50" cy="50" r="48" fill="none" stroke="#222" stroke-width="1" />
-                        <circle cx="50" cy="50" r="48" fill="none" stroke="#00f3ff" stroke-width="1" stroke-dasharray="10 30" />
+                        <circle cx="50" cy="50" r="48" fill="none" stroke="#00f3ff" stroke-width="1"
+                            stroke-dasharray="10 30" />
                     </svg>
                     <!-- Profile Image -->
-                    <div class="absolute inset-4 rounded-full overflow-hidden border-4 border-[#1a1a1a] shadow-[0_0_30px_rgba(184,115,51,0.3)]">
+                    <div
+                        class="absolute inset-4 rounded-full overflow-hidden border-4 border-[#1a1a1a] shadow-[0_0_30px_rgba(184,115,51,0.3)]">
                         <!-- REPLACE WITH YOUR IMAGE -->
-                        <img src="profile.jpg" alt="Sajad Ali" class="w-full h-full object-cover filter grayscale hover:grayscale-0 transition duration-500">
+                        <img src="profile.jpg" alt="Sajad Ali"
+                            class="w-full h-full object-cover filter grayscale hover:grayscale-0 transition duration-500">
                     </div>
                 </div>
             </div>
@@ -225,7 +284,8 @@
         <div class="container mx-auto px-6">
             <div class="flex items-center gap-4 mb-12">
                 <i class="fas fa-cogs text-3xl text-copper"></i>
-                <h2 class="text-3xl font-bold text-white machine-font uppercase">Technical <span class="text-copper">Expertise</span></h2>
+                <h2 class="text-3xl font-bold text-white machine-font uppercase">Technical <span
+                        class="text-copper">Expertise</span></h2>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
@@ -234,16 +294,25 @@
                     <h3 class="text-electric font-bold mb-4 machine-font">SIMULATION & DESIGN</h3>
                     <div class="space-y-4">
                         <div>
-                            <div class="flex justify-between text-xs text-gray-400 mb-1"><span>ANSYS MAXWELL</span><span>90%</span></div>
-                            <div class="meter-container"><div class="meter-fill" style="--target-width: 90%"></div></div>
+                            <div class="flex justify-between text-xs text-gray-400 mb-1"><span>ANSYS
+                                    MAXWELL</span><span>90%</span></div>
+                            <div class="meter-container">
+                                <div class="meter-fill" style="--target-width: 90%"></div>
+                            </div>
                         </div>
                         <div>
-                            <div class="flex justify-between text-xs text-gray-400 mb-1"><span>FEA ANALYSIS</span><span>85%</span></div>
-                            <div class="meter-container"><div class="meter-fill" style="--target-width: 85%"></div></div>
+                            <div class="flex justify-between text-xs text-gray-400 mb-1"><span>FEA
+                                    ANALYSIS</span><span>85%</span></div>
+                            <div class="meter-container">
+                                <div class="meter-fill" style="--target-width: 85%"></div>
+                            </div>
                         </div>
                         <div>
-                            <div class="flex justify-between text-xs text-gray-400 mb-1"><span>ELECTRICAL MACHINE DESIGN</span><span>95%</span></div>
-                            <div class="meter-container"><div class="meter-fill" style="--target-width: 95%"></div></div>
+                            <div class="flex justify-between text-xs text-gray-400 mb-1"><span>ELECTRICAL MACHINE
+                                    DESIGN</span><span>95%</span></div>
+                            <div class="meter-container">
+                                <div class="meter-fill" style="--target-width: 95%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -253,16 +322,25 @@
                     <h3 class="text-electric font-bold mb-4 machine-font">POWER SYSTEMS</h3>
                     <div class="space-y-4">
                         <div>
-                            <div class="flex justify-between text-xs text-gray-400 mb-1"><span>POWER ELECTRONICS</span><span>90%</span></div>
-                            <div class="meter-container"><div class="meter-fill" style="--target-width: 90%"></div></div>
+                            <div class="flex justify-between text-xs text-gray-400 mb-1"><span>POWER
+                                    ELECTRONICS</span><span>90%</span></div>
+                            <div class="meter-container">
+                                <div class="meter-fill" style="--target-width: 90%"></div>
+                            </div>
                         </div>
                         <div>
-                            <div class="flex justify-between text-xs text-gray-400 mb-1"><span>CONTROL SYSTEMS</span><span>85%</span></div>
-                            <div class="meter-container"><div class="meter-fill" style="--target-width: 85%"></div></div>
+                            <div class="flex justify-between text-xs text-gray-400 mb-1"><span>CONTROL
+                                    SYSTEMS</span><span>85%</span></div>
+                            <div class="meter-container">
+                                <div class="meter-fill" style="--target-width: 85%"></div>
+                            </div>
                         </div>
                         <div>
-                            <div class="flex justify-between text-xs text-gray-400 mb-1"><span>TROUBLESHOOTING</span><span>95%</span></div>
-                            <div class="meter-container"><div class="meter-fill" style="--target-width: 95%"></div></div>
+                            <div class="flex justify-between text-xs text-gray-400 mb-1">
+                                <span>TROUBLESHOOTING</span><span>95%</span></div>
+                            <div class="meter-container">
+                                <div class="meter-fill" style="--target-width: 95%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -271,12 +349,116 @@
                 <div class="machine-card p-6">
                     <h3 class="text-electric font-bold mb-4 machine-font">PROGRAMMING</h3>
                     <div class="flex flex-wrap gap-3 mt-4">
-                        <span class="px-3 py-1 bg-gray-900 border border-copper text-copper text-sm font-mono">MATLAB</span>
-                        <span class="px-3 py-1 bg-gray-900 border border-copper text-copper text-sm font-mono">C / C++</span>
-                        <span class="px-3 py-1 bg-gray-900 border border-copper text-copper text-sm font-mono">PYTHON</span>
-                        <span class="px-3 py-1 bg-gray-900 border border-copper text-copper text-sm font-mono">ARDUINO</span>
+                        <span
+                            class="px-3 py-1 bg-gray-900 border border-copper text-copper text-sm font-mono">MATLAB</span>
+                        <span class="px-3 py-1 bg-gray-900 border border-copper text-copper text-sm font-mono">C /
+                            C++</span>
+                        <span
+                            class="px-3 py-1 bg-gray-900 border border-copper text-copper text-sm font-mono">PYTHON</span>
+                        <span
+                            class="px-3 py-1 bg-gray-900 border border-copper text-copper text-sm font-mono">ARDUINO</span>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainable Engineering / SDGs -->
+    <section id="sustainability" class="py-20 relative bg-black/50 border-y border-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center gap-4 mb-12">
+                <i class="fas fa-globe-asia text-3xl text-electric"></i>
+                <h2 class="text-3xl font-bold text-white machine-font uppercase">Sustainable <span
+                        class="text-electric">Engineering</span></h2>
+            </div>
+
+            <div class="mb-12 max-w-4xl">
+                <p class="text-gray-400 text-lg border-l-4 border-copper pl-6 py-2 leading-relaxed">
+                    Reducing Rare Earth Metal (REM) usage directly aligns with UN <span class="text-white">Sustainable
+                        Development Goals (SDGs)</span> by promoting resource efficiency, developing sustainable tech
+                    (like PM-less motors), and enabling a circular economy.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+                <!-- SDG 12 -->
+                <div class="machine-card p-6 hover:border-l-copper">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i class="fas fa-recycle text-2xl text-copper"></i>
+                        <h3 class="text-xl font-bold text-white machine-font">SDG 12</h3>
+                    </div>
+                    <p class="text-xs text-electric uppercase tracking-widest mb-2">Responsible Consumption</p>
+                    <p class="text-gray-400 text-sm">Designing for reduced material intensity, extended product life,
+                        and circularity (recycling/reuse).</p>
+                </div>
+
+                <!-- SDG 9 -->
+                <div class="machine-card p-6 hover:border-l-copper">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i class="fas fa-industry text-2xl text-copper"></i>
+                        <h3 class="text-xl font-bold text-white machine-font">SDG 9</h3>
+                    </div>
+                    <p class="text-xs text-electric uppercase tracking-widest mb-2">Innovation & Infrastructure</p>
+                    <p class="text-gray-400 text-sm">Developing new, less REM-intensive technologies (e.g., advanced
+                        motors) and resilient infrastructure.</p>
+                </div>
+
+                <!-- SDG 7 -->
+                <div class="machine-card p-6 hover:border-l-copper">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i class="fas fa-solar-panel text-2xl text-copper"></i>
+                        <h3 class="text-xl font-bold text-white machine-font">SDG 7</h3>
+                    </div>
+                    <p class="text-xs text-electric uppercase tracking-widest mb-2">Affordable Clean Energy</p>
+                    <p class="text-gray-400 text-sm">Reducing REM dependence in clean energy tech makes the green
+                        transition more feasible.</p>
+                </div>
+
+                <!-- SDG 13 -->
+                <div class="machine-card p-6 hover:border-l-copper">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i class="fas fa-leaf text-2xl text-copper"></i>
+                        <h3 class="text-xl font-bold text-white machine-font">SDG 13</h3>
+                    </div>
+                    <p class="text-xs text-electric uppercase tracking-widest mb-2">Climate Action</p>
+                    <p class="text-gray-400 text-sm">Less resource-intensive clean energy tech reduces the overall
+                        carbon footprint of the energy transition.</p>
+                </div>
+
+                <!-- SDG 15 -->
+                <div class="machine-card p-6 hover:border-l-copper">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i class="fas fa-tree text-2xl text-copper"></i>
+                        <h3 class="text-xl font-bold text-white machine-font">SDG 15</h3>
+                    </div>
+                    <p class="text-xs text-electric uppercase tracking-widest mb-2">Life on Land</p>
+                    <p class="text-gray-400 text-sm">Reducing demand for REMs lessens the pressure from mining,
+                        protecting ecosystems and biodiversity.</p>
+                </div>
+
+                <!-- SDG 10 -->
+                <div class="machine-card p-6 hover:border-l-copper">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i class="fas fa-balance-scale text-2xl text-copper"></i>
+                        <h3 class="text-xl font-bold text-white machine-font">SDG 10</h3>
+                    </div>
+                    <p class="text-xs text-electric uppercase tracking-widest mb-2">Reduced Inequalities</p>
+                    <p class="text-gray-400 text-sm">Promoting sustainable, localized solutions instead of exacerbating
+                        resource conflicts.</p>
+                </div>
+
+                <!-- SDG 1 -->
+                <div class="machine-card p-6 hover:border-l-copper">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i class="fas fa-hand-holding-heart text-2xl text-copper"></i>
+                        <h3 class="text-xl font-bold text-white machine-font">SDG 1</h3>
+                    </div>
+                    <p class="text-xs text-electric uppercase tracking-widest mb-2">No Poverty</p>
+                    <p class="text-gray-400 text-sm">Ensuring access to essential technologies (like affordable EVs)
+                        without negative impacts on vulnerable communities.</p>
+                </div>
+
             </div>
         </div>
     </section>
@@ -286,33 +468,49 @@
         <div class="container mx-auto px-6">
             <div class="flex items-center gap-4 mb-12">
                 <i class="fas fa-project-diagram text-3xl text-electric"></i>
-                <h2 class="text-3xl font-bold text-white machine-font uppercase">Projects & <span class="text-electric">Achievements</span></h2>
+                <h2 class="text-3xl font-bold text-white machine-font uppercase">Projects & <span
+                        class="text-electric">Achievements</span></h2>
             </div>
 
             <div class="grid md:grid-cols-3 gap-6">
-                
+
                 <!-- Project 1 -->
                 <div class="machine-card p-6 group">
-                    <div class="text-xs font-bold text-copper mb-2 border border-copper inline-block px-2 py-0.5">AWARD & THESIS</div>
-                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-electric transition">IEEE SCONEST 22 Winner</h3>
-                    <p class="text-gray-400 text-sm mb-4">Optimization of Biogas Production from Food Waste. Awarded first prize for the thesis abstract. Focused on sustainable energy yield optimization.</p>
-                    <div class="h-1 w-10 bg-gray-700 group-hover:w-full group-hover:bg-electric transition-all duration-500"></div>
+                    <div class="text-xs font-bold text-copper mb-2 border border-copper inline-block px-2 py-0.5">AWARD
+                        & THESIS</div>
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-electric transition">IEEE SCONEST 22
+                        Winner</h3>
+                    <p class="text-gray-400 text-sm mb-4">Optimization of Biogas Production from Food Waste. Awarded
+                        first prize for the thesis abstract. Focused on sustainable energy yield optimization.</p>
+                    <div
+                        class="h-1 w-10 bg-gray-700 group-hover:w-full group-hover:bg-electric transition-all duration-500">
+                    </div>
                 </div>
 
                 <!-- Project 2 -->
                 <div class="machine-card p-6 group">
-                    <div class="text-xs font-bold text-copper mb-2 border border-copper inline-block px-2 py-0.5">POWER SYSTEMS</div>
-                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-electric transition">IEEE 9-Bus Analysis</h3>
-                    <p class="text-gray-400 text-sm mb-4">Reactor Placement in IEEE 9-Bus System. Improved voltage stability and system loss using PSSE analysis for optimal reactor placement.</p>
-                    <div class="h-1 w-10 bg-gray-700 group-hover:w-full group-hover:bg-electric transition-all duration-500"></div>
+                    <div class="text-xs font-bold text-copper mb-2 border border-copper inline-block px-2 py-0.5">POWER
+                        SYSTEMS</div>
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-electric transition">IEEE 9-Bus
+                        Analysis</h3>
+                    <p class="text-gray-400 text-sm mb-4">Reactor Placement in IEEE 9-Bus System. Improved voltage
+                        stability and system loss using PSSE analysis for optimal reactor placement.</p>
+                    <div
+                        class="h-1 w-10 bg-gray-700 group-hover:w-full group-hover:bg-electric transition-all duration-500">
+                    </div>
                 </div>
 
                 <!-- Project 3 -->
                 <div class="machine-card p-6 group">
-                    <div class="text-xs font-bold text-copper mb-2 border border-copper inline-block px-2 py-0.5">AUTOMATION</div>
-                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-electric transition">PLC Motor Control</h3>
-                    <p class="text-gray-400 text-sm mb-4">Designed a PLC system to control and monitor an induction motor with HMI feedback and sensor integration.</p>
-                    <div class="h-1 w-10 bg-gray-700 group-hover:w-full group-hover:bg-electric transition-all duration-500"></div>
+                    <div class="text-xs font-bold text-copper mb-2 border border-copper inline-block px-2 py-0.5">
+                        AUTOMATION</div>
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-electric transition">PLC Motor Control
+                    </h3>
+                    <p class="text-gray-400 text-sm mb-4">Designed a PLC system to control and monitor an induction
+                        motor with HMI feedback and sensor integration.</p>
+                    <div
+                        class="h-1 w-10 bg-gray-700 group-hover:w-full group-hover:bg-electric transition-all duration-500">
+                    </div>
                 </div>
 
             </div>
@@ -322,8 +520,10 @@
     <!-- Publications (Highlighted) -->
     <section id="publications" class="py-16 bg-black relative overflow-hidden border-y border-electric/30">
         <!-- Background Glitch Effect -->
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEgMWgydjJIMUMxeiIgZmlsbD0iIzIyMiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+')] opacity-20"></div>
-        
+        <div
+            class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEgMWgydjJIMUMxeiIgZmlsbD0iIzIyMiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+')] opacity-20">
+        </div>
+
         <div class="container mx-auto px-6 relative z-10">
             <div class="flex items-center gap-3 mb-8">
                 <i class="fas fa-book text-electric text-2xl"></i>
@@ -333,11 +533,16 @@
             <div class="machine-card p-8 border-l-4 border-electric">
                 <div class="flex flex-col md:flex-row justify-between items-start gap-6">
                     <div>
-                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-2">Torque Ripple Minimization of IPM Spoke Type Motor</h3>
-                        <p class="text-copper font-mono mb-4">19th Conference on Electrical Machines, Drives and Power Systems (ELMA) – 2025</p>
-                        <p class="text-gray-400 max-w-3xl">Advanced research into electrical machine design focusing on Interior Permanent Magnet (IPM) motors. Utilized FEA to reduce torque pulsations for high-performance drive applications.</p>
+                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-2">Torque Ripple Minimization of IPM
+                            Spoke Type Motor</h3>
+                        <p class="text-copper font-mono mb-4">19th Conference on Electrical Machines, Drives and Power
+                            Systems (ELMA) – 2025</p>
+                        <p class="text-gray-400 max-w-3xl">Advanced research into electrical machine design focusing on
+                            Interior Permanent Magnet (IPM) motors. Utilized FEA to reduce torque pulsations for
+                            high-performance drive applications.</p>
                     </div>
-                    <a href="https://ieeexplore.ieee.org/document/11083385" target="_blank" class="bg-electric/10 border border-electric text-electric hover:bg-electric hover:text-black px-6 py-3 font-bold uppercase machine-font transition whitespace-nowrap">
+                    <a href="https://ieeexplore.ieee.org/document/11083385" target="_blank"
+                        class="bg-electric/10 border border-electric text-electric hover:bg-electric hover:text-black px-6 py-3 font-bold uppercase machine-font transition whitespace-nowrap">
                         View on IEEE Xplore <i class="fas fa-external-link-alt ml-2"></i>
                     </a>
                 </div>
@@ -350,22 +555,25 @@
         <div class="container mx-auto px-6">
             <div class="flex items-center gap-4 mb-12">
                 <i class="fas fa-briefcase text-3xl text-copper"></i>
-                <h2 class="text-3xl font-bold text-white machine-font uppercase">Professional <span class="text-copper">Experience</span></h2>
+                <h2 class="text-3xl font-bold text-white machine-font uppercase">Professional <span
+                        class="text-copper">Experience</span></h2>
             </div>
 
             <div class="max-w-4xl mx-auto relative border-l-2 border-gray-800 ml-4 md:ml-0 pl-8 md:pl-0 space-y-12">
-                
+
                 <!-- Job 1 -->
                 <div class="relative md:flex group">
                     <!-- Dot -->
-                    <div class="absolute -left-[41px] md:left-1/2 md:-ml-[9px] top-0 w-4 h-4 bg-gray-900 border-2 border-electric rounded-full z-10"></div>
-                    
+                    <div
+                        class="absolute -left-[41px] md:left-1/2 md:-ml-[9px] top-0 w-4 h-4 bg-gray-900 border-2 border-electric rounded-full z-10">
+                    </div>
+
                     <div class="md:w-1/2 md:pr-12 md:text-right">
                         <h3 class="text-xl font-bold text-white">Networks Engineer</h3>
                         <p class="text-electric font-bold">NETS INTERNATIONAL</p>
                         <p class="text-gray-500 text-sm font-mono mb-2">Feb 2023 – Present | Sukkur, PK</p>
                     </div>
-                    
+
                     <div class="md:w-1/2 md:pl-12">
                         <div class="machine-card p-5 text-sm text-gray-400">
                             <ul class="list-disc list-inside space-y-1">
@@ -381,11 +589,13 @@
                 <!-- Job 2 -->
                 <div class="relative md:flex group">
                     <!-- Dot -->
-                    <div class="absolute -left-[41px] md:left-1/2 md:-ml-[9px] top-0 w-4 h-4 bg-gray-900 border-2 border-copper rounded-full z-10"></div>
-                    
+                    <div
+                        class="absolute -left-[41px] md:left-1/2 md:-ml-[9px] top-0 w-4 h-4 bg-gray-900 border-2 border-copper rounded-full z-10">
+                    </div>
+
                     <div class="md:w-1/2 md:pr-12 md:text-right order-1">
-                         <!-- Mobile view swap logic handled by flex order usually, but here simpler to keep structure -->
-                         <div class="machine-card p-5 text-sm text-gray-400 text-left">
+                        <!-- Mobile view swap logic handled by flex order usually, but here simpler to keep structure -->
+                        <div class="machine-card p-5 text-sm text-gray-400 text-left">
                             <ul class="list-disc list-inside space-y-1">
                                 <li>Assisted protection and inspection team for the grid.</li>
                                 <li>Maintained and repaired grid equipment (relays, transformers).</li>
@@ -394,7 +604,7 @@
                             </ul>
                         </div>
                     </div>
-                    
+
                     <div class="md:w-1/2 md:pl-12 order-2">
                         <h3 class="text-xl font-bold text-white">Trainee Electrical Engineer</h3>
                         <p class="text-copper font-bold">SEPCO</p>
@@ -419,7 +629,8 @@
                 <div class="flex items-center gap-3 text-gray-300 border border-gray-800 px-6 py-3 bg-gray-900/50">
                     <i class="fas fa-phone text-copper"></i> +92 311 3958155
                 </div>
-                <a href="https://www.linkedin.com/in/sajadali7/" target="_blank" class="flex items-center gap-3 text-gray-300 border border-gray-800 px-6 py-3 bg-gray-900/50 hover:border-electric hover:text-electric transition">
+                <a href="https://www.linkedin.com/in/sajadali7/" target="_blank"
+                    class="flex items-center gap-3 text-gray-300 border border-gray-800 px-6 py-3 bg-gray-900/50 hover:border-electric hover:text-electric transition">
                     <i class="fab fa-linkedin"></i> LinkedIn Profile
                 </a>
             </div>
@@ -435,15 +646,15 @@
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        
+
         const container = document.getElementById('canvas-container');
         renderer.setSize(window.innerWidth, window.innerHeight);
         container.appendChild(renderer.domElement);
 
         // 1. STATOR (Copper Winding)
         const statorGeometry = new THREE.TorusKnotGeometry(9, 1.5, 120, 20, 2, 3);
-        const statorMaterial = new THREE.MeshPhongMaterial({ 
-            color: 0xb87333, 
+        const statorMaterial = new THREE.MeshPhongMaterial({
+            color: 0xb87333,
             wireframe: true,
             transparent: true,
             opacity: 0.3
@@ -453,9 +664,9 @@
 
         // 2. ROTOR (Magnetic Core)
         const rotorGeometry = new THREE.IcosahedronGeometry(4, 1);
-        const rotorMaterial = new THREE.MeshPhongMaterial({ 
-            color: 0x2c3e50, 
-            flatShading: true 
+        const rotorMaterial = new THREE.MeshPhongMaterial({
+            color: 0x2c3e50,
+            flatShading: true
         });
         const rotor = new THREE.Mesh(rotorGeometry, rotorMaterial);
         const rotorWireframe = new THREE.LineSegments(
@@ -469,7 +680,7 @@
         const particlesGeometry = new THREE.BufferGeometry();
         const count = 400;
         const posArray = new Float32Array(count * 3);
-        for(let i = 0; i < count * 3; i++) {
+        for (let i = 0; i < count * 3; i++) {
             posArray[i] = (Math.random() - 0.5) * 40;
         }
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
@@ -509,4 +720,5 @@
         });
     </script>
 </body>
+
 </html>
